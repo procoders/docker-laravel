@@ -7,8 +7,9 @@ cd ~
 HOME_DIR=`pwd -P`
 
 cd $CONTEXT_ROOT
+
 docker stop laravel-nginx &> /dev/null
 docker rm laravel-nginx &> /dev/null
-docker run -d --publish=8080:8080 --volume=$CONTEXT_ROOT/laravel/public:/var/www/public --name=laravel-nginx --link=laravel-php-fpm:php-fpm laravel-nginx
+docker run -d --publish=80:80  --name=laravel-nginx --volumes-from=laravel-data --link=laravel-php-fpm:php-fpm laravel-nginx
 
 cd $START_PWD

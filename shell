@@ -1,0 +1,23 @@
+#!/bin/bash
+
+START_PWD=`pwd -P`
+cd `dirname $BASH_SOURCE`
+CONTEXT_ROOT=`pwd -P`
+cd ~
+HOME_DIR=`pwd -P`
+
+cd $START_PWD
+
+docker stop laravel-php-shell &> /dev/null
+docker rm laravel-php-shell &> /dev/null
+
+docker run -i -t -h localdev --env="UID=$UID" --env="USER=$USER" \
+	--link=laravel-redis:redis \
+	--link=laravel-mariadb:mariadb \
+	--volume=$HOME_DIR/.ssh:/home/$USER/.host-ssh  \
+	--volumes-from=laravel-data  \
+	--name=laravel-php-shell \
+	laravel-php-cli "/bin/bash "$@""
+
+docker stop laravel-php-shell &> /dev/null
+docker rm laravel-php-shell &> /dev/null

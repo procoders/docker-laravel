@@ -14,7 +14,7 @@ cd $CONTEXT_ROOT
 
 ./images/data/build
 ./images/redis/build
-./images/postgres/build
+./images/mariadb/build
 ./images/php-cli/build
 ./images/php-fpm/build
 ./images/nginx/build

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+docker login
+
+START_PWD=`pwd -P`
+cd `dirname $BASH_SOURCE`/..
+CONTEXT_ROOT=`pwd -P`
+cd ~
+HOME_DIR=`pwd -P`
+
+echo
+echo Tagging and pushing images...
+echo
+
+cd $CONTEXT_ROOT
+
+docker tag laravel-data copeus/laravel-data
+docker tag laravel-nginx copeus/laravel-nginx
+docker tag laravel-php-cli copeus/laravel-php-cli
+docker tag laravel-php-fpm copeus/laravel-php-fpm
+docker tag laravel-redis copeus/laravel-redis
+docker tag laravel-mariadb copeus/laravel-mariadb
+
+echo
+echo I will push following images...
+echo
+docker images | grep copeus/
+
+echo
+echo Now, I will push following images...
+echo
+
+docker push copeus/laravel-data
+docker push copeus/laravel-nginx
+docker push copeus/laravel-php-cli
+docker push copeus/laravel-php-fpm
+docker push copeus/laravel-redis
+docker push copeus/laravel-mariadb
+
+
+echo
+
+cd $START_PWD

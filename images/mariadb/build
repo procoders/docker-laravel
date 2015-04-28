@@ -1,0 +1,19 @@
+#!/bin/bash
+
+START_PWD=`pwd -P`
+cd `dirname $BASH_SOURCE`/../..
+CONTEXT_ROOT=`pwd -P`
+cd ~
+HOME_DIR=`pwd -P`
+
+echo
+echo ...mariadb
+echo
+
+cd $CONTEXT_ROOT
+docker stop laravel-mariadb &> /dev/null
+docker rm laravel-mariadb &> /dev/null
+docker rmi laravel-mariadb &> /dev/null
+docker build --tag="laravel-mariadb" --file="./images/mariadb/Dockerfile" $CONTEXT_ROOT
+
+cd $START_PWD

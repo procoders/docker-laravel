@@ -1,0 +1,48 @@
+#!/bin/bash
+
+echo ********************************
+echo ** Dev Enviroment init script **
+echo ********************************
+echo
+echo "Please, enter the path to local directory to which instance volume will be mapped. "
+echo " - Example MacOs: /Users/HugoBoss/Work/MynewProject"
+echo " - Example Windows: /c/Users/HugoBoss/Work/MynewProject"
+read -e -p "Enter the path to local directory (use Tab-Tab for suggestions): " LOCAL_VOLUME
+
+echo "Conecting data volume to $LOCAL_VOLUME ..."
+
+echo
+echo Pulling images from Docker Hub and running :)
+echo
+
+echo **** Data container
+docker run -d --name=laravel-data --volume=$LOCAL_VOLUME:/data copeus/laravel-data
+
+echo **** Mysql MariaDB
+docker run -d --publish=3306:3306 --name=laravel-mariadb --volumes-from=laravel-data copeus/laravel-mariadb
+
+echo **** RedisDB
+docker run -d --publish=6379:6379 --name=laravel-redis --volumes-from=laravel-data copeus/laravel-redis
+
+echo **** PHP-FPM
+docker run -d --env="APP_DEBUG=true" --env="CACHE_DRIVER=redis" \
+	--link=laravel-redis:redis \
+	--link=laravel-mariadb:mariadb \
+	--publish=9000:9000 \
+	--name=laravel-php-fpm \
+	--volumes-from=laravel-data \
+	copeus/laravel-php-fpm
+
+echo **** PHP-CLI
+docker pull copeus/laravel-php-cli
+
+echo Nginx
+docker run -d --publish=80:80  --name=laravel-nginx --volumes-from=laravel-data --link=laravel-php-fpm:php-fpm copeus/laravel-nginx
+
+echo
+echo
+echo Yaho-o-o!!!!! Containers for dev enviroment was succesefully initialized :)
+echo
+
+echo Next steps: to 
+echo

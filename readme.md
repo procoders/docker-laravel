@@ -1,31 +1,66 @@
 # Docker Laravel
 
-Welcome to my base template for getting up and running with Docker and Laravel!
+Base enviroment for getting up and running with Docker and Laravel!
 
-This project is part studying, part teaching, part experimentation and possibly even good enough to use for real projects!
+Thanks for [Alexander Trauzzi](http://profiles.google.com/atrauzzi) for work at creating [docker-laravel](https://github.com/atrauzzi/docker-laravel) project as I took as fundament for my own.
 
 Please be sure to have at least Docker 1.5 installed when using this project.
-
+If you have MacOs or Windows as main desktop OS, please install Boot2Docker first.
 
 ## Contents
 
-If you'd like to learn more about this repository, browse it!  I've placed `readme.md` files at the root of all the directories 
-with explanations of what's going on.  My rationale for the choices I've made is a best-effort based on my understanding of Docker 
-as a technology and its ecosystem.
+If you'd like to learn more about this repository, browse it!  I've placed `readme.md` files at the root of all the directories
+with explanations of what's going on.
 
+## Installation via DockerHub
 
-### Contributing
+### Boot2Docker
 
-If you spot a gap, inaccuracy or opportunity for improvement, I would really appreciate it if you opened a ticket or even a pull request!
+[Download](http://boot2docker.io/) and install Boot2Docker. It's very simple.
 
-### Where's fig?
+### Build images an run instances
 
-It was recently announced that fig is being renamed and reworked into a new tool called docker-compose.  Docker 1.5 released with one 
-particularly useful feature which is multiple Dockerfiles per build context.  As a result, I've just whipped together some very dumb 
-bash scripts to get things done.
+Clone repository by `git clone https://github.com/copeus/docker-laravel.git` to some directory and start into docker console init script.
+ * For Mac `cd /Users/Workdir/...`
+ * For Win `cd /Users/c/Workdir/...`
 
+For getting working enviroment just run
+```
+./env-init
+```
+If you want to check, what containers are runed, just do:
+```
+docker ps
+```
 
 ## Usage
+### Enviroment
+
+You are able to put you code to <your directory during init>/www/public.
+But better just install Laravel via Composer with a help of console command, which described below.
+
+Logs could be found at <your directory during init>/logs.
+
+Access to Mysql could be found in evnviroments vairables by `print_r($_ENV)`
+
+### Console commands
+Now u are able to use [Composer](https://getcomposer.org/) and install [Laraver 5](http://laravel.com/docs/master#install-laravel):
+```
+./composer global require "laravel/installer=~1.1"
+```
+
+Also you are able to use [Artisan CLI](http://laravel.com/docs/5.0/artisan):
+```
+./artisan
+```
+
+If you are sure, that u storng needed in shell via bash console:
+```
+./shell
+```
+
+
+## Manaul build (just for sysops)
 
 To get started, all you have to do is clone this project to your local hard drive and run `images/build` followed by `images/develop`.
 
@@ -37,4 +72,4 @@ in action.  If you are running on Linux, everything should run as local services
 
 This project is open source and I am highly interested in receiving suggestions and advice from the community.
 
-Docker Laravel is created and maintained by [Alexander Trauzzi](http://profiles.google.com/atrauzzi).
+Docker Laravel is created and maintained by Oleg Kopachovets.

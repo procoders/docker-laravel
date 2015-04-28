@@ -8,5 +8,5 @@ HOME_DIR=`pwd -P`
 
 ./images/nginx/stop
 ./images/php-fpm/stop
-./images/postgres/stop
+./images/mariadb/stop
 ./images/redis/stop

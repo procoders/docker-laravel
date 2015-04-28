@@ -1,12 +1,26 @@
 FROM ubuntu
-MAINTAINER "Alexander Trauzzi" <alexander@gmail.com>
+MAINTAINER "Oleg Kopachovets" <copeus@gmail.com>
 
 WORKDIR /tmp
 
 RUN apt-get update -y
-ADD /laravel /var/www
 
-RUN apt-get install -y php5-mongo php5-mysql php5-pgsql php5-redis php5-json php5-mcrypt php5-curl
+RUN apt-get install -y \
+php5-curl \
+php-pear \
+php5-dev \
+php5-imagick \
+php5-curl \
+php5-mcrypt \
+php5-mysqlnd \
+php5-pgsql \
+php5-memcache \
+php5-redis \
+php5-mongo \
+php5-xdebug \
+php5-xhprof \
+php5-json
+
 RUN php5enmod mcrypt
 
 RUN apt-get install -y php5-cli git
@@ -17,5 +31,5 @@ ADD /images/php-cli/entrypoint.sh /entrypoint.sh
 WORKDIR /
 RUN php -r "readfile('https://getcomposer.org/installer');" | php
 
-WORKDIR /var/www
+WORKDIR /data/www/public
 ENTRYPOINT ["/entrypoint.sh"]

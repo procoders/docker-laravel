@@ -1,5 +1,8 @@
 #!/bin/bash
-
+read -e -p "Enter the path to local directory to which instance volume will be mapped (press Tab-Tab): " LOCAL_VOLUME
+echo "Conecting data volume to $LOCAL_VOLUME ..."
 #docker stop laravel-data &> /dev/null
 #docker rm laravel-data &> /dev/null
-docker run -d --name=laravel-data laravel-data
+
+echo **** Data container
+docker run -d --name=laravel-data --volume=$LOCAL_VOLUME:/data copeus/laravel-data
