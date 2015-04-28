@@ -57,7 +57,7 @@ After that you are able to add a records with wanted hostname to etc/hosts, like
 ### Console commands
 Now u are able to use [Composer](https://getcomposer.org/) and install [Laraver 5](http://laravel.com/docs/master#install-laravel):
 ```
-./composer global require "laravel/installer=~1.1"
+./composer require "laravel/installer=~1.1"
 ```
 
 Also you are able to use [Artisan CLI](http://laravel.com/docs/5.0/artisan):
