@@ -17,7 +17,7 @@ docker run -i -t -h localdev --env="UID=$UID" --env="USER=$USER" \
 	--volume=$HOME_DIR/.ssh:/home/$USER/.host-ssh  \
 	--volumes-from=laravel-data  \
 	--name=laravel-php-shell \
-	laravel-php-cli "/bin/bash "$@""
+	copeus/laravel-php-cli "/bin/bash "$@""
 
 docker stop laravel-php-shell &> /dev/null
 docker rm laravel-php-shell &> /dev/null

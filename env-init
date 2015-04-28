@@ -12,7 +12,7 @@ read -e -p "Enter the path to local directory (use Tab-Tab for suggestions): " L
 echo "Conecting data volume to $LOCAL_VOLUME ..."
 
 echo
-echo Pulling images from Docker Hub and running :)
+echo Pulling images from Docker Hub and running
 echo
 
 echo **** Data container
@@ -41,8 +41,8 @@ docker run -d --publish=80:80  --name=laravel-nginx --volumes-from=laravel-data 
 
 echo
 echo
-echo Yaho-o-o!!!!! Containers for dev enviroment was succesefully initialized :)
+echo Yaho-o-o!!!!! Containers for dev enviroment was succesefully initialized
 echo
 
-echo Next steps: to 
+echo Have a nice day
 echo

@@ -11,7 +11,7 @@ cd $START_PWD
 docker stop laravel-php-composer &> /dev/null
 docker rm laravel-php-composer &> /dev/null
 
-docker run -i -t -h localdev --env="UID=$UID" --env="USER=$USER" --volume=$HOME_DIR/.ssh:/home/$USER/.host-ssh  --volumes-from=laravel-data --name=laravel-php-composer laravel-php-cli "/composer.phar "$@""
+docker run -i -t -h localdev --env="UID=$UID" --env="USER=$USER" --volume=$HOME_DIR/.ssh:/home/$USER/.host-ssh  --volumes-from=laravel-data --name=laravel-php-composer copeus/laravel-php-cli "/composer.phar "$@""
 
 docker stop laravel-php-composer &> /dev/null
 docker rm laravel-php-composer &> /dev/null
