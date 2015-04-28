@@ -11,6 +11,9 @@ read -e -p "Enter the path to local directory (use Tab-Tab for suggestions): " L
 
 echo "Conecting data volume to $LOCAL_VOLUME ..."
 
+mkdir -p $LOCAL_VOLUME/www/public
+mkdir -p $LOCAL_VOLUME/logs
+
 echo
 echo Pulling images from Docker Hub and running
 echo

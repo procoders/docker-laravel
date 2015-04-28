@@ -31,5 +31,5 @@ ADD /images/php-cli/entrypoint.sh /entrypoint.sh
 WORKDIR /
 RUN php -r "readfile('https://getcomposer.org/installer');" | php
 
-WORKDIR /data/www/public
+WORKDIR /data/www
 ENTRYPOINT ["/entrypoint.sh"]
