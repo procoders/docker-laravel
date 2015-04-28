@@ -43,6 +43,17 @@ Logs could be found at <your directory during init>/logs.
 
 Access to Mysql could be found in evnviroments vairables by `print_r($_ENV)`
 
+#### Host name and ip address
+Also, you are able to find IP of your docker virtual macine by 
+```
+boot2docker ip
+```
+
+After that you are able to add a records with wanted hostname to etc/hosts, like
+```
+<ip_of_your_docker> www.mystartup.dev
+```
+
 ### Console commands
 Now u are able to use [Composer](https://getcomposer.org/) and install [Laraver 5](http://laravel.com/docs/master#install-laravel):
 ```
